@@ -136,6 +136,7 @@ class TestPetShop < Minitest::Test
     remove_pet_by_name(@pet_shop, "Arthur")
     pet = find_pet_by_name(@pet_shop,"Arthur")
     assert_nil(pet)
+    #p @pet_shop[:pets]
   end
 
   def test_add_pet_to_stock
