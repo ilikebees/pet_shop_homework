@@ -39,17 +39,44 @@ return array
 end
 
 
+def find_pet_by_name(pet_shop, pet_name)
+  for pet in pet_shop[:pets] do
+    if pet[:name] == pet_name
+      return pet
+    end
+  end
+  return nil
+end
 
-# def pets_by_breed(pet_shop, breed)
-#   total = []
-#   for pet in pet_shop[:pets]
-#     p pet[:breed]
-#
+# def remove_pet_by_name(pet_shop, pet_name)
+#   for pet in pet_shop[:pets] do
+#     if pet[:name] =! pet_name
+#     end
+#   end
+#   p pet
+# return nil
+# end #weirdly works, but is wrong. You put =! the wrong way around.
+
+def remove_pet_by_name(pet_shop, pet_name)
+  for pet in pet_shop[:pets] do
+    if pet[:name] == pet_name
+       pet[:name].clear
+    end
+  end
+end
+
+# def customer_can_afford_pet(customer, new_pet)
+#   for pet in new_pet[:pets] do
+#     p new_pet
+#   if customer[:cash] >= new_pet[:price]
+#   return new_pet
 #
 #   end
 # end
-#
+# return false
 # end
+
+
 
 # def pets_by_breed(pet_shop, breed_of_pet)
 #   for x in x[:breed]
