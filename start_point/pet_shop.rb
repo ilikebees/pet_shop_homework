@@ -57,13 +57,13 @@ end
 # return nil
 # end #weirdly works, but is wrong. You put =! the wrong way around.
 
-def remove_pet_by_name(pet_shop, pet_name)
-  for pet in pet_shop[:pets] do
-    if pet[:name] == pet_name
-       pet.clear
-    end
-  end
-end
+# def remove_pet_by_name(pet_shop, pet_name)
+#   for pet in pet_shop[:pets] do
+#     if pet[:name] == pet_name
+#        pet.clear
+#     end
+#   end
+# end
 
 # def remove_pet_by_name(pet_shop, pet_name)
 #   for pet in pet_shop[:pets] do
@@ -72,6 +72,20 @@ end
 #     end
 #   end
 # end
+
+def remove_pet_by_name(pet_shop, pet_name)
+  x = 0
+  for pet in pet_shop[:pets] do
+    if pet[:name] == pet_name
+      pet_shop[:pets].delete_at(x)
+    end
+    x += 1
+  end
+end
+
+
+
+
 
 
 
@@ -102,13 +116,14 @@ end
 # end
 
 
-# def customer_can_afford_pet(customer, new_pet)
-#   for pet in new_pet[:pets] do
-#     p new_pet
-#   if customer[:cash] >= new_pet[:price]
-#   return new_pet
+# def customer_can_afford_pet(customer, pet)
+#   for pet in pet[:pets] do
+#   if  pet[:price] >= customer[:cash]
+#     return pet[:pets]
+#
+#   return
 #
 #   end
 # end
-# return false
+#
 # end
