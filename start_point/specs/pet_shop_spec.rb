@@ -169,54 +169,58 @@ class TestPetShop < Minitest::Test
 
   # # OPTIONAL
 
-  # def test_customer_can_afford_pet__insufficient_funds
-  #   customer = @customers[1]
-  #   can_buy_pet = customer_can_afford_pet(customer, @new_pet)
-  #   assert_equal(false, can_buy_pet)
-  # end
+  def test_customer_can_afford_pet__insufficient_funds
+    customer = @customers[1]
+    can_buy_pet = customer_can_afford_pet(customer, @new_pet)
+    assert_equal(false, can_buy_pet)
+  end
 
-  # def test_customer_can_afford_pet__sufficient_funds
-  #   customer = @customers[0]
-  #   can_buy_pet = customer_can_afford_pet(customer, @new_pet)
-  #   assert_equal(true, can_buy_pet)
-  # end
+  def test_customer_can_afford_pet__sufficient_funds
+    customer = @customers[0]
+    can_buy_pet = customer_can_afford_pet(customer, @new_pet)
+    assert_equal(true, can_buy_pet)
+  end
 
-  # #These are 'integration' tests so we want multiple asserts.
-  # #If one fails the entire test should fail
-  # def test_sell_pet_to_customer__pet_found
-  #   customer = @customers[0]
-  #   pet = find_pet_by_name(@pet_shop,"Arthur")
+  #These are 'integration' tests so we want multiple asserts.
+  #If one fails the entire test should fail
+  def test_sell_pet_to_customer__pet_found
+    customer = @customers[0]
+    pet = find_pet_by_name(@pet_shop,"Arthur")
 
-  #   sell_pet_to_customer(@pet_shop, pet, customer)
+    sell_pet_to_customer(@pet_shop, pet, customer)
 
-  #   assert_equal(1, customer_pet_count(customer))
-  #   assert_equal(1, pets_sold(@pet_shop))
-  #   assert_equal(100, customer_cash(customer))
-  #   assert_equal(1900, total_cash(@pet_shop))
-  # end
+    assert_equal(1, customer_pet_count(customer))
+    assert_equal(1, pets_sold(@pet_shop))
+    assert_equal(100, customer_cash(customer))
+    assert_equal(1900, total_cash(@pet_shop))
+  end
 
-  # def test_sell_pet_to_customer__pet_not_found
-  #   customer = @customers[0]
-  #   pet = find_pet_by_name(@pet_shop,"Dave")
+  #Look at the test, see what the test is doing for example: one of the tests is checking the total cash that the petshop has after it's sold the pet. We then need to look and see what method changes the cash that the pet shop has. We find that we've creatied a method called add or remove cash, that works on the petshop. We obviously need to include that method in the method we are creating to sell a pet. It'll then take the money that we get for selling the pet, stick it into the petshops cash and then the test for total cash will be correct.
 
-  #   sell_pet_to_customer(@pet_shop, pet, customer)
+  #add or remove cash. 
 
-  #   assert_equal(0, customer_pet_count(customer))
-  #   assert_equal(0, pets_sold(@pet_shop))
-  #   assert_equal(1000, customer_cash(customer))
-  #   assert_equal(1000, total_cash(@pet_shop))
-  # end
+  def test_sell_pet_to_customer__pet_not_found
+    customer = @customers[0]
+    pet = find_pet_by_name(@pet_shop,"Dave")
 
-  # def test_sell_pet_to_customer__insufficient_funds
-  #   customer = @customers[1]
-  #   pet = find_pet_by_name(@pet_shop,"Arthur")
+    sell_pet_to_customer(@pet_shop, pet, customer)
 
-  #   sell_pet_to_customer(@pet_shop, pet, customer)
+    assert_equal(0, customer_pet_count(customer))
+    assert_equal(0, pets_sold(@pet_shop))
+    assert_equal(1000, customer_cash(customer))
+    assert_equal(1000, total_cash(@pet_shop))
+  end
 
-  #   assert_equal(0, customer_pet_count(customer))
-  #   assert_equal(0, pets_sold(@pet_shop))
-  #   assert_equal(50, customer_cash(customer))
-  #   assert_equal(1000, total_cash(@pet_shop))
-  # end
+  def test_sell_pet_to_customer__insufficient_funds
+    customer = @customers[1]
+    pet = find_pet_by_name(@pet_shop,"Arthur")
+
+    sell_pet_to_customer(@pet_shop, pet, customer)
+
+    assert_equal(0, customer_pet_count(customer))
+    assert_equal(0, pets_sold(@pet_shop))
+    assert_equal(50, customer_cash(customer))
+    assert_equal(1000, total_cash(@pet_shop))
+  end
 
 end
